@@ -19,6 +19,58 @@ def angka(nilai):
     e.delete(0,END)
     e.insert(0,str(sebelum)+str(nilai))
 
+def tambah():
+    angka_pertama = e.get()
+    global n_awal
+    global mtk
+    mtk = 'penjumlahan'
+    n_awal = int(angka_pertama)
+    e.delete(0,END)
+    
+def kurang():
+    angka_pertama = e.get()
+    global n_awal
+    global mtk
+    mtk = 'pengurangan'
+    n_awal = int(angka_pertama)
+    e.delete(0,END)
+
+def kali():
+    angka_pertama = e.get()
+    global n_awal
+    global mtk
+    mtk = 'perkalian'
+    n_awal = int(angka_pertama)
+    e.delete(0,END)
+    
+def bagi():
+    angka_pertama = e.get()
+    global n_awal
+    global mtk
+    mtk = 'pembagian'
+    n_awal = int(angka_pertama)
+    e.delete(0,END)
+    
+def hapus():
+    e.delete(0,END)
+    
+def samadengan():
+    angka_akhir = e.get()
+    e.delete(0,END)
+    if mtk == 'penjumlahan':
+        e.insert(0,n_awal + int(angka_akhir))
+    elif mtk == 'pengurangan':
+        e.insert(0,n_awal - int(angka_akhir))
+    elif mtk == 'perkalian':
+        e.insert(0,n_awal * int(angka_akhir))
+    elif mtk == 'pembagian':
+        try :
+            hitung = n_awal / int(angka_akhir)
+            e.insert(0,hitung)
+        except ZeroDivisionError :
+            e.insert(0,'Undefined')
+            
+        
 
 button1= Button(root,text='1',padx=30,pady=20,command=lambda:angka(1))
 button2= Button(root,text='2',padx=30,pady=20,command=lambda:angka(2))
@@ -30,7 +82,12 @@ button7= Button(root,text='7',padx=30,pady=20,command=lambda:angka(7))
 button8= Button(root,text='8',padx=30,pady=20,command=lambda:angka(8))
 button9= Button(root,text='9',padx=30,pady=20,command=lambda:angka(9))
 button0= Button(root,text='0',padx=30,pady=20,command=lambda:angka(0))
-
+tamb= Button(root,text='+',padx=30,pady=20,command=tambah)
+kur= Button(root,text='-',padx=30,pady=20,command=kurang)
+kal= Button(root,text='*',padx=30,pady=20,command=kali)
+defined= Button(root,text='/',padx=30,pady=20,command=bagi)
+delete= Button(root,text='C',padx=30,pady=20,command=hapus)
+hasil= Button(root,text='=',padx=30,pady=20,command=samadengan)
 
 button1.grid(row=3,column=0,pady=2)
 button2.grid(row=3,column=1,pady=2)
@@ -42,4 +99,13 @@ button7.grid(row=1,column=0,pady=2)
 button8.grid(row=1,column=1,pady=2)
 button9.grid(row=1,column=2,pady=2)
 button0.grid(row=4,column=1,pady=2)
+tamb.grid(row=1,column=3,pady=2)
+kur.grid(row=2,column=3,pady=2)
+kal.grid(row=3,column=3,pady=2)
+defined.grid(row=4,column=3,pady=2)
+delete.grid(row=4,column=0,pady=2)
+hasil.grid(row=4,column=2,pady=2)
+
+
+
 root.mainloop()
